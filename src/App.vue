@@ -25,12 +25,32 @@
         </p>
       </div>
     </div>
+    <div class="row">
+      <div class="col-8 mx-auto">
+        <h1>Filter</h1>
+        <p>{{ text | toUpperCase | toLowerCase }}</p>
+        <hr />
+        <div class="form-group">
+          <input v-model="filterText" class="form-control" />
+        </div>
+        <ul class="list-group">
+          <li v-for="car in filteteredCars" class="list-group-item">
+            {{ car }}
+          </li>
+        </ul>
+        <hr />
+        <app-list></app-list>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 /* eslint-disable no-unused-expressions */
 /* eslint-disable prefer-const */
+import List from './components/List';
+import { carMixin } from './carMixin';
+
 export default {
   directives: {
     'local-highlight': {
@@ -63,6 +83,20 @@ export default {
       },
     },
   },
+  data() {
+    return {
+      text: 'Hello world!',
+    };
+  },
+  filters: {
+    toUpperCase(value) {
+      return value.toUpperCase();
+    },
+  },
+  components: {
+    appList: List,
+  },
+  mixins: [carMixin],
 };
 </script>
 

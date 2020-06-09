@@ -24,6 +24,8 @@ Vue.directive('highlight', {
   },
 });
 
+Vue.filter('toLowerCase', (value) => value.toLowerCase());
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
